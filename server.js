@@ -85,5 +85,18 @@ app.get("/", (req, res) => {
     }
   });
 
+  //SHOW ROUTE
+  app.get("/players/:id", async (req, res) => {
+    try {
+      // send all players
+      res.json(
+        await Players.findById(req.params.id)
+      );
+    } catch (error) {
+      //send error
+      res.status(400).json(error);
+    }
+  });
+
 //=====LISTENER=====
 app.listen(PORT, () => console.log("I am listening"));
